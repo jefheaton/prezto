@@ -78,7 +78,14 @@ alias python="python3"
 alias mng="./manage.py"
 
 ## Volantio Aliases
+alias ctl='./appctl'
 alias vol="cd ~/Volantio"
+alias vbast="vault ssh -mode otp -role bastion_otp bastion@bastion.volantio.com"
+alias vfull="./appctl stop-all && ./appctl start"
+alias vres="./appctl restart"
+alias vshell="./appctl manage shell"
+alias vtest="./appctl server-test --parallel 4"
+alias vvault="ll ~ | grep .vault-token" # tells you when your token was last renewed
 
 ###############
 #  TODOs
