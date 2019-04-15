@@ -77,6 +77,9 @@ alias pip="echo 'Remember to use pipenv' && pip3"
 alias python="python3"
 alias mng="./manage.py"
 
+## Volantio Aliases
+alias vol="cd ~/Volantio"
+
 ###############
 #  TODOs
 ######
