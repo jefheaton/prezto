@@ -1,13 +1,112 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+#!/usr/local/bin/zsh
+# File: .zshrc
+# Author: Jeff Heaton <jeff@jgheaton.com>
+# Last Modified Date: 2018.12.30
 
+# TODO set up Mutt
+# TODO set mutt to disable or display links
+# TODO Consolidate/forward emails to one address
+
+###############
+#  Prezto
+######
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+# Load NVM using manual instal for XDG
+export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# npm
+# see npm config ls -l | grep /
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
+
+# complete -C /usr/local/bin/vault vault
+
+# taskwarrior data
+export TASKRC=$XDG_CONFIG_HOME/task/.taskrc
+export TASKDATA=$XDG_DATA_HOME/task
+
+
+###############
+#  aliases
+######
+# use a bare repo to track dotfiles
+# https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+alias cd="cdls"
+alias docs="cd ~/iA"
+# colorful list view
+alias ll="ls -lGh"
+alias lla="ls -lGhA"
+# in columns with slashes after directory
+alias ls="ls -CFG"
+# spelling error
+alias sl="ls"
+# pipe long directory to less so they can be scrolled easily
+alias lsl="ls -lhFA | less"
+alias la="ls -a"
+alias lt="tree && echo 'using 🌳 tree 🌳'"
+alias man="tldr"
+# create intermediate directories and tell us about it
+alias mkdir="mkdir -pv"
+alias top="htop"
+alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
+alias vi="nvim"
+alias vimrc="vi $XDG_CONFIG_HOME/nvim/init.vim"
+alias wttr="curl wttr.in"
+alias zshrc="vi $XDG_CONFIG_HOME/zsh/.zshrc"
+
+# ## Git Aliases
+alias gA="git add ."
+alias gaN="echo 'git add . --intent-to-add' && git add -N ."
+alias gb="git branch"
+alias gc="git clone"
+alias gck="git checkout"
+alias gf="git fetch"
+alias gm="git merge"
+alias gp="git pull"
+alias gpu="git push"
+alias gpf="git push -f"
+alias gs="git status"
+alias master="git checkout master"
+alias gll='git log --graph --pretty=oneline --abbrev-commit'
+alias gg="git log --graph --pretty=format:'%C(bold)%h%Creset%C(magenta)%d%Creset %s %C(yellow)<%an> %C(cyan)(%cr)%Creset' --abbrev-commit --date=relative"
+# From http://blogs.atlassian.com/2014/10/advanced-git-aliases/
+# Show commits since last pull
+alias gnew="git log HEAD@{1}..HEAD@{0}"
+# Add uncommitted and unstaged changes to the last commit
+alias gcaa="git commit -a --amend -C HEAD"
+alias ggui="git gui"
+alias ggs="gg --stat"
+
+## Python Aliases
+alias pip="echo 'Remember to use pipenv' && pip3"
+alias python="python3"
+alias mng="./manage.py"
+
+###############
+#  TODOs
+######
+# Workarounds to support XDG
+# - Prezto
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fzf + ag configuration
+if hash fzf && hash ag 2>/dev/null; then
+  export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+  export FZF_DEFAULT_OPTS='
+  --color fg:#B7C5D3,bg:#1D252C,hl:#539AFC,fg+:#718CA1,bg+:#333F4A,hl+:#5EC4FF
+  --color info:#8BD49C,prompt:#33CED8,spinner:#EBBF83,pointer:#E27E8D,marker:#70E1E8
+  '
+fi
+

@@ -35,6 +35,12 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'syntax-highlighting' \
+  'history-substring-search' \
+  'autosuggestions' \
+  'osx' \
+  'python' \
+  'contrib-prompt' \
   'prompt'
 
 #
@@ -57,10 +63,10 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':prezto:module:editor' key-bindings 'emacs'
+zstyle ':prezto:module:editor' key-bindings 'vi'
 
 # Auto convert .... to ../..
-# zstyle ':prezto:module:editor' dot-expansion 'yes'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
 
 # Allow the zsh prompt context to be shown.
 #zstyle ':prezto:module:editor' ps-context 'yes'
@@ -113,7 +119,41 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'spaceship'
+
+###############
+# Spaceship Theme
+######
+SPACESHIP_PROMPT_ORDER=(
+  time     #
+  user     # before prompt char
+  host     #
+  char
+  dir
+  git
+  node
+  docker
+  venv
+  pyenv
+)
+# DIR
+SPACESHIP_DIR_PREFIX='' # disable directory prefix, cause it's not the first section
+SPACESHIP_DIR_TRUNC='1' # show only last directory
+
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_KUBECONTEXT_SHOW=false
+
+SPACESHIP_CHAR_SYMBOL="λ "
+SPACESHIP_CHAR_COLOR_SUCCESS=blue
+SPACESHIP_GIT_SYMBOL=" "
+SPACESHIP_PACKAGE_SYMBOL=" "
+SPACESHIP_DOCKER_SYMBOL=" "
+SPACESHIP_PYENV_SYMBOL=" "
+SPACESHIP_NODE_SYMBOL=" "
+SPACESHIP_EMBER_SYMBOL=" "
+SPACESHIP_KUBECONTEXT_SYMBOL="ﴱ "
+SPACESHIP_TERRAFORM_SYMBOL=行
 
 # Set the working directory prompt display length.
 # By default, it is set to 'short'. Set it to 'long' (without '~' expansion)

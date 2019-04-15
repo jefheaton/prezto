@@ -9,3 +9,18 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+# Follow the XDG standard of file organization https://wiki.archlinux.org/index.php/XDG_Base_Directory where possible
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+if [ ! -w ${XDG_RUNTIME_DIR:="/run/user/$UID"} ]; then
+    echo "\$XDG_RUNTIME_DIR ($XDG_RUNTIME_DIR) not writable. Setting to /tmp." >&2
+    XDG_RUNTIME_DIR=/tmp
+fi
+export XDG_RUNTIME_DIR
+
+export HISTFILE="$XDG_DATA_HOME"/zsh/history
+
+export VIMCOLORDIR="$XDG_DATA_HOME/dein/repos/github.com/jefheaton/citylights.vim/"
+export VIMCOLORFILE="$XDG_DATA_HOME/dein/repos/github.com/jefheaton/citylights.vim/colors/citylights.vim"
