@@ -15,23 +15,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Load NVM using manual instal for XDG
-export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
+# Load NVM using manual install for XDG
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# npm
-# see npm config ls -l | grep /
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
-export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
-export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
-
-# complete -C /usr/local/bin/vault vault
-
-# taskwarrior data
-export TASKRC=$XDG_CONFIG_HOME/task/.taskrc
-export TASKDATA=$XDG_DATA_HOME/task
-
 
 ###############
 #  aliases

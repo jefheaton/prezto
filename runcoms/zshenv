@@ -24,3 +24,21 @@ export HISTFILE="$XDG_DATA_HOME"/zsh/history
 
 export VIMCOLORDIR="$XDG_DATA_HOME/dein/repos/github.com/jefheaton/citylights.vim/"
 export VIMCOLORFILE="$XDG_DATA_HOME/dein/repos/github.com/jefheaton/citylights.vim/colors/citylights.vim"
+
+###############
+#  NVM & NPM
+######
+
+export NVM_DIR="$XDG_CONFIG_HOME/.nvm"
+
+# npm
+# see npm config ls -l | grep /
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
+export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
+
+# complete -C /usr/local/bin/vault vault
+
+# taskwarrior data
+export TASKRC=$XDG_CONFIG_HOME/task/.taskrc
+export TASKDATA=$XDG_DATA_HOME/task
