@@ -19,6 +19,34 @@ fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Use vi-mode in zsh
+bindkey -v
+# Change cursor shape between insert and normal mode in iTerm2.app
+# https://emily.st/2013/05/03/zsh-vi-cursor/
+function zle-keymap-select zle-line-init
+{
+    # change cursor shape in iTerm2
+    case $KEYMAP in
+        vicmd)      print -n -- "\E]50;CursorShape=0\C-G";;  # block cursor
+        viins|main) print -n -- "\E]50;CursorShape=1\C-G";;  # line cursor
+    esac
+
+    zle reset-prompt
+    zle -R
+}
+
+function zle-line-finish
+{
+    print -n -- "\E]50;CursorShape=0\C-G"  # block cursor
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+# 10ms for key sequences, faster normal/insert switch
+KEYTIMEOUT=1
+
 ###############
 #  aliases
 ######
@@ -27,12 +55,12 @@ fi
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias cd="cdls"
-alias docs="cd ~/iA"
+alias docs="cd ~/iA/Documents"
 # colorful list view
-alias ll="ls -lGh"
-alias lla="ls -lGhA"
+alias ll="k -h --group-directories-first"
+alias lla="ll --all"
 # in columns with slashes after directory
-alias ls="ls -CFG"
+alias ls="gls -CFG --color --group-directories-first"
 # spelling error
 alias sl="ls"
 # pipe long directory to less so they can be scrolled easily
@@ -53,6 +81,7 @@ alias zshrc="vi $XDG_CONFIG_HOME/zsh/.zshrc"
 alias gA="git add ."
 alias gaN="echo 'git add . --intent-to-add' && git add -N ."
 alias gb="git branch"
+alias gbr="git branch --remote"
 alias gc="git clone"
 alias gck="git checkout"
 alias gf="git fetch"
@@ -73,8 +102,6 @@ alias ggui="git gui"
 alias ggs="gg --stat"
 
 ## Python Aliases
-alias pip="echo 'Remember to use pipenv' && pip3"
-alias python="python3"
 alias mng="./manage.py"
 
 ## Volantio Aliases
