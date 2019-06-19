@@ -19,8 +19,10 @@ fi
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Use vi-mode in zsh
+# Use vi-mode in zsh https://sanctum.geek.nz/arabesque/vi-mode-in-bash/
+# set -o vi? https://dougblack.io/words/zsh-vi-mode.html
 bindkey -v
+
 # Change cursor shape between insert and normal mode in iTerm2.app
 # https://emily.st/2013/05/03/zsh-vi-cursor/
 function zle-keymap-select zle-line-init
@@ -56,21 +58,24 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias cd="cdls"
 alias docs="cd ~/iA/Documents"
+
 # colorful list view
 alias ll="k -h --group-directories-first"
 alias lla="ll --all"
+
 # in columns with slashes after directory
 alias ls="gls -CFG --color --group-directories-first"
-# spelling error
-alias sl="ls"
+
 # pipe long directory to less so they can be scrolled easily
 alias lsl="ls -lhFA | less"
 alias la="ls -a"
 alias lt="tree && echo 'using 🌳 tree 🌳'"
 alias man="tldr"
+
 # create intermediate directories and tell us about it
 alias mkdir="mkdir -pv"
 alias top="htop"
+alias tmux='TERM=xterm-256color tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias vi="nvim"
 alias vimrc="vi $XDG_CONFIG_HOME/nvim/init.vim"
@@ -87,8 +92,9 @@ alias gck="git checkout"
 alias gf="git fetch"
 alias gm="git merge"
 alias gp="git pull"
+alias gpr="git pull --rebase"
 alias gpu="git push"
-alias gpf="git push -f"
+alias gpuf="git push -f"
 alias gs="git status"
 alias master="git checkout master"
 alias gll='git log --graph --pretty=oneline --abbrev-commit'
