@@ -52,12 +52,10 @@ KEYTIMEOUT=1
 ###############
 #  aliases
 ######
-# use a bare repo to track dotfiles
-# https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias cd="cdls"
-alias docs="cd ~/iA/Documents"
+alias docs="cd ~/Documents"
 
 # colorful list view
 alias ll="k -h --group-directories-first"
@@ -79,6 +77,7 @@ alias tmux='TERM=xterm-256color tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias src="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias vi="nvim"
 alias vimrc="vi $XDG_CONFIG_HOME/nvim/init.vim"
+alias work="cd ~/Work"
 alias wttr="curl wttr.in"
 alias zshrc="vi $XDG_CONFIG_HOME/zsh/.zshrc"
 
@@ -109,16 +108,6 @@ alias ggs="gg --stat"
 
 ## Python Aliases
 alias mng="./manage.py"
-
-## Volantio Aliases
-alias ctl='./appctl'
-alias vol="cd ~/Volantio"
-alias vbast="vault ssh -mode otp -role bastion_otp bastion@bastion.volantio.com"
-alias vfull="./appctl stop-all && ./appctl start"
-alias vres="./appctl restart"
-alias vshell="./appctl manage shell"
-alias vtest="./appctl server-test --parallel 4"
-alias vvault="ll ~ | grep .vault-token" # tells you when your token was last renewed
 
 ###############
 #  TODOs
