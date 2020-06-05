@@ -38,10 +38,3 @@ export NPM_CONFIG_CACHE=$XDG_CACHE_HOME/npm
 export NPM_CONFIG_TMP=$XDG_RUNTIME_DIR/npm
 
 # complete -C /usr/local/bin/vault vault
-
-# taskwarrior data
-export TASKRC=$XDG_CONFIG_HOME/task/.taskrc
-export TASKDATA=$XDG_DATA_HOME/task
-
-# vault
-export VAULT_ADDR='https://secrets.volantio.com:8200'
